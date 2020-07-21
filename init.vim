@@ -2,13 +2,9 @@
 
         call plug#begin(stdpath('data') . '/plugged')
         
-        if exists('g:vscode')
-                Plug 'asvetliakov/vim-easymotion'
-        else
-                Plug 'easymotion/vim-easymotion'
-                Plug 'neoclide/coc.nvim', {'branch': 'release'}
-                Plug 'morhetz/gruvbox'
-        endif
+        Plug 'easymotion/vim-easymotion'
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'morhetz/gruvbox'
         
         call plug#end()
 

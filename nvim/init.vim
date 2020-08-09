@@ -4,35 +4,30 @@
 
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	
 	" Syntax highlight
-	" Order matters, to prevent an issue of vim-styled-components from happening
-	" https://github.com/styled-components/vim-styled-components/issues/75
+        " Javascript
+        Plug 'yuezk/vim-js'
+        " Typescript
 	Plug 'HerringtonDarkholme/yats.vim'
-	Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+        " Styled components
+        Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
+        " JSX and TSX
         Plug 'maxmellon/vim-jsx-pretty'
-        Plug 'hail2u/vim-css3-syntax'
-	
 	" Color theme
-	Plug 'joshdick/onedark.vim'
-	
+        Plug 'rakr/vim-one'
 	" File tree
 	Plug 'preservim/nerdtree'
         Plug 'Xuyuanp/nerdtree-git-plugin'
-	
 	" Fuzzy search
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-	
 	" Statusline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
-	
 	" Git
 	Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
         Plug 'whiteinge/diffconflicts'
-	
 	" Utility
 	Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
@@ -41,12 +36,20 @@
 	Plug 'scrooloose/nerdcommenter'
         Plug 'yegappan/mru' 
         Plug 'yuttie/comfortable-motion.vim'
-	
+
         call plug#end()
 
 "PLUGINS>
 
 "<CONFIG
+
+        " Recommended https://github.com/HerringtonDarkholme/yats.vim
+        set re=0
+
+        " Syntax fold
+        set foldmethod=syntax
+        " Do not fold on open
+        set foldlevelstart=99
 
         " Set line numbers to relative
 	set number relativenumber
@@ -61,90 +64,21 @@
 	autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 	autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-        " Css syntax for properties with -
-        " https://github.com/hail2u/vim-css3-syntax#highlighting-problems-on-vertical-align-box-shadow-and-others
-        augroup VimCSS3Syntax
-          autocmd!
-          autocmd FileType css setlocal iskeyword+=-
-        augroup END
-
-"CONFIG>
-
-"<SHORTCUTS
-
-        " Custom shortcuts
-
-        " Remap leader key to Space
-        map <Space> <Leader>
-        map <Space><Space> <Leader><Leader>
-        
-        " FZF bindings
-        
-        " Quick open file
-        noremap <F1> :GFiles<CR>
-        
-	" Search text everywhere
-        noremap <F2> :Rg<Space>
-
-        " Easymotion bindings
-        
-        " Space-/ 2-char search
-        map <Leader>/ <Plug>(easymotion-overwin-f2)
-        
-	" CoC bindings
-
-        " d Go to definition
-	map <Leader>d <Plug>(coc-definition)
-
-        " r Go to references
-	map <Leader>r <Plug>(coc-references)
-	
-	" i Go to implementation
-	map <Leader>i <Plug>(coc-implementation)
-	
-	" t Go to type definition
-	map <Leader>t <Plug>(coc-type-definition)
-
-        " h Show help
-	noremap <Leader>h :call <SID>show_documentation()<CR>
-
-        " a Show actions
-        map <Leader>a <Plug>(coc-codeaction)
-
-        " f Fix current problem
-        map <Leader>f <Plug>(coc-fix-current)
-
-        " [ ] Navigate diagnostics
-        map <Leader>[ <Plug>(coc-diagnostic-prev)
-        map <Leader>] <Plug>(coc-diagnostic-next)
-
-        " ld Open list of diagnostics
-        noremap <Leader>ld :CocList diagnostics<CR>
-
-        " cr Rename
-        map <Leader>cr <Plug>(coc-rename)
-
-"SHORTCUTS>
-
-"<EASYMOTION
+        " Nerdcomment - add spaces after comment delimiters by default
+        let g:NERDSpaceDelims = 1
 
         " https://github.com/easymotion/vim-easymotion#minimal-configuration-tutorial
-        
 	" Disable default mappings
         let g:EasyMotion_do_mapping = 0
-        
+
 	" Turn on case-insensitive feature
         let g:EasyMotion_smartcase = 1
-
-"EASYMOTION>
-
-"<NERDTREE
 
         " Open automatically when vim is opened without arguments
         " https://github.com/preservim/nerdtree#how-can-i-open-a-nerdtree-automatically-when-vim-starts-up-if-no-files-were-specified
         autocmd StdinReadPre * let s:std_in=1
         autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-        
+
         " Set line numbers in NERDTree
         let NERDTreeShowLineNumbers=1
         autocmd FileType nerdtree setlocal relativenumber
@@ -156,29 +90,22 @@
         let NERDTreeMinimalUI = 1
         let NERDTreeDirArrows = 1        
 
-"NERDTREE>
+        " Airline
 
-"<AIRLINE
-
-	let g:airline_theme='onedark'
+	let g:airline_theme='one'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
         let g:airline_powerline_fonts = 1
 
-"AIRLINE>
-
-"<COLORS
-
-	syntax on
+        " Color scheme
+        
 	set termguicolors
 	set background=dark
-	let g:onedark_hide_endofbuffer=1
-        let g:onedark_color_overrides = {
-        \ "vertsplit": { "gui": "#2C323C", "cterm": "236", "cterm16": "8" }
-        \}
-        colorscheme onedark
+        let g:one_allow_italics = 1
+        colorscheme one
 
-"COLORS>
+"CONFIG>
+
 
 "<COC
 
@@ -192,9 +119,8 @@
 	      \]
 
 	" The following bits taken from https://github.com/neoclide/coc.nvim#example-vim-configuration
-	
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
-	 set updatetime=300
+	set updatetime=300
 
 	" Use gh to show documentation in preview window.
 	function! s:show_documentation()
@@ -218,3 +144,59 @@
 	endif
 
 "COC>
+
+"<SHORTCUTS
+
+        " Custom shortcuts
+        
+        " Remap leader key to Space
+        map <Space> <Leader>
+        map <Space><Space> <Leader><Leader>
+
+        " FZF bindings
+        
+        " Quick open file
+        noremap <F1> :GFiles<CR>
+
+	" Search text everywhere
+        noremap <F2> :Rg<Space>
+
+        " Easymotion bindings
+        
+        " Space-/ 2-char search
+        map <Leader>/ <Plug>(easymotion-overwin-f2)
+
+	" CoC bindings
+        
+        " d Go to definition
+	map <Leader>d <Plug>(coc-definition)
+        
+        " r Go to references
+	map <Leader>r <Plug>(coc-references)
+
+	" i Go to implementation
+	map <Leader>i <Plug>(coc-implementation)
+
+	" t Go to type definition
+	map <Leader>t <Plug>(coc-type-definition)
+
+        " h Show help
+	noremap <Leader>h :call <SID>show_documentation()<CR>
+
+        " a Show actions
+        map <Leader>a <Plug>(coc-codeaction)
+
+        " f Fix current problem
+        map <Leader>f <Plug>(coc-fix-current)
+
+        " [ ] Navigate diagnostics
+        map <Leader>[ <Plug>(coc-diagnostic-prev)
+        map <Leader>] <Plug>(coc-diagnostic-next)
+
+        " ld Open list of diagnostics
+        noremap <Leader>ld :CocList diagnostics<CR>
+
+        " cr Rename
+        map <Leader>cr <Plug>(coc-rename)
+
+"SHORTCUTS>

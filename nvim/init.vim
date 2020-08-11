@@ -14,7 +14,7 @@
         " JSX and TSX
         Plug 'maxmellon/vim-jsx-pretty'
 	" Color theme
-        Plug 'rakr/vim-one'
+        Plug 'joshdick/onedark.vim'
 	" File tree
 	Plug 'preservim/nerdtree'
         Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -92,17 +92,18 @@
 
         " Airline
 
-	let g:airline_theme='one'
+	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
-        let g:airline_powerline_fonts = 1
 
         " Color scheme
         
+        syntax on
 	set termguicolors
 	set background=dark
-        let g:one_allow_italics = 1
-        colorscheme one
+        let g:onedark_hide_endofbuffer = 1
+        let g:onedark_terminal_italics = 1
+        colorscheme onedark
 
 "CONFIG>
 

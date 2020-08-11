@@ -29,12 +29,11 @@
 	Plug 'airblade/vim-gitgutter'
         Plug 'whiteinge/diffconflicts'
 	" Utility
+        Plug 'yegappan/mru' 
 	Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
-        Plug 'easymotion/vim-easymotion'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
-        Plug 'yegappan/mru' 
         Plug 'yuttie/comfortable-motion.vim'
 
         call plug#end()
@@ -66,13 +65,6 @@
 
         " Nerdcomment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
-
-        " https://github.com/easymotion/vim-easymotion#minimal-configuration-tutorial
-	" Disable default mappings
-        let g:EasyMotion_do_mapping = 0
-
-	" Turn on case-insensitive feature
-        let g:EasyMotion_smartcase = 1
 
         " Open automatically when vim is opened without arguments
         " https://github.com/preservim/nerdtree#how-can-i-open-a-nerdtree-automatically-when-vim-starts-up-if-no-files-were-specified
@@ -161,11 +153,6 @@
 
 	" Search text everywhere
         noremap <F2> :Rg<Space>
-
-        " Easymotion bindings
-        
-        " Space-/ 2-char search
-        map <Leader>/ <Plug>(easymotion-overwin-f2)
 
 	" CoC bindings
         

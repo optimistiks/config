@@ -5,6 +5,8 @@
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	" Syntax highlight
+        " Css3
+        Plug 'hail2u/vim-css3-syntax'
         " Javascript
         Plug 'yuezk/vim-js'
         " Typescript
@@ -13,6 +15,7 @@
         Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
         " JSX and TSX
         Plug 'maxmellon/vim-jsx-pretty'
+
 	" Color theme
         Plug 'joshdick/onedark.vim'
 	" File tree
@@ -29,9 +32,10 @@
 	Plug 'airblade/vim-gitgutter'
         Plug 'whiteinge/diffconflicts'
 	" Utility
-        Plug 'yegappan/mru' 
+        Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
+        Plug 'yegappan/mru' 
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
         Plug 'yuttie/comfortable-motion.vim'
@@ -63,6 +67,13 @@
 	autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 	autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
+        " Css box-shadow and so on https://github.com/hail2u/vim-css3-syntax#highlighting-problems-on-vertical-align-box-shadow-and-others
+        augroup VimCSS3Syntax
+          autocmd!
+
+          autocmd FileType css setlocal iskeyword+=-
+        augroup END
+
         " Nerdcomment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
 
@@ -82,11 +93,15 @@
         let NERDTreeMinimalUI = 1
         let NERDTreeDirArrows = 1        
 
+        " Show hidden files by default
+        let NERDTreeShowHidden = 1
+
         " Airline
 
 	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
+        let g:airline_powerline_fonts = 1
 
         " Color scheme
         
@@ -186,5 +201,8 @@
 
         " cr Rename
         map <Leader>cr <Plug>(coc-rename)
+        
+        " n Toggle NerdTree
+        noremap <Leader>n :NERDTree<CR>
 
 "SHORTCUTS>

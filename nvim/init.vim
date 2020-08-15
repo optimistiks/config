@@ -119,25 +119,22 @@
 
 	" Extensions
 	let g:coc_global_extensions = [
+	      \'coc-html',
+	      \'coc-css',
 	      \'coc-json',
 	      \'coc-tsserver',
+	      \'coc-styled-components',
 	      \'coc-eslint',
 	      \'coc-prettier',
-	      \'coc-styled-components'
+	      \'coc-actions',
+	      \'coc-highlight',
+	      \'coc-fzf-preview',
 	      \]
 
 	" The following bits taken from https://github.com/neoclide/coc.nvim#example-vim-configuration
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 	set updatetime=300
 
-	" Use gh to show documentation in preview window.
-	function! s:show_documentation()
-	  if (index(['vim','help'], &filetype) >= 0)
-	    execute 'h '.expand('<cword>')
-	  else
-	    call CocAction('doHover')
-	  endif
-	endfunction
 
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -165,44 +162,57 @@
         
         " Quick open file
         noremap <F1> :GFiles<CR>
-
 	" Search text everywhere
-        noremap <F2> :Rg<Space>
+        noremap <F2> :Rg<CR>
 
 	" CoC bindings
         
-        " d Go to definition
+        " Go to definition
 	map <Leader>d <Plug>(coc-definition)
-        
-        " r Go to references
+        " Go to references
 	map <Leader>r <Plug>(coc-references)
-
-	" i Go to implementation
+	" Go to implementation
 	map <Leader>i <Plug>(coc-implementation)
-
-	" t Go to type definition
+	" Go to type definition
 	map <Leader>t <Plug>(coc-type-definition)
 
-        " h Show help
+        " Show hover help
+	function! s:show_documentation()
+	  if (index(['vim','help'], &filetype) >= 0)
+	    execute 'h '.expand('<cword>')
+	  else
+	    call CocAction('doHover')
+	  endif
+	endfunction
 	noremap <Leader>h :call <SID>show_documentation()<CR>
 
-        " a Show actions
-        map <Leader>a <Plug>(coc-codeaction)
-
-        " f Fix current problem
+        " Fix current problem
         map <Leader>f <Plug>(coc-fix-current)
 
-        " [ ] Navigate diagnostics
+        " Navigate diagnostics
         map <Leader>[ <Plug>(coc-diagnostic-prev)
         map <Leader>] <Plug>(coc-diagnostic-next)
-
-        " ld Open list of diagnostics
-        noremap <Leader>ld :CocList diagnostics<CR>
-
-        " cr Rename
-        map <Leader>cr <Plug>(coc-rename)
         
-        " n Toggle NerdTree
+        " Toggle NerdTree
         noremap <Leader>n :NERDTree<CR>
+
+	" Remap for do codeAction of selected region
+	" https://github.com/iamcco/coc-actions
+        " <leader>a for the current selected range
+        " <leader>aw for the current word
+        " <leader>aas for the current sentence
+        " <leader>aap for the current paragraph
+	function! s:cocActionsOpenFromSelected(type) abort
+	  execute 'CocCommand actions.open ' . a:type
+	endfunction
+	xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+	nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+
+        " Show actions
+        map <Leader>ca <Plug>(coc-codeaction)
+        " Rename
+        map <Leader>cr <Plug>(coc-rename)
+        " Open list of diagnostics
+        noremap <Leader>ld :CocList diagnostics<CR>
 
 "SHORTCUTS>

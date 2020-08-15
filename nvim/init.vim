@@ -131,9 +131,22 @@
 	      \]
 
 	" The following bits taken from https://github.com/neoclide/coc.nvim#example-vim-configuration
+       
+	" TextEdit might fail if hidden is not set.
+	set hidden
+
+	" Some servers have issues with backup files, see #649.
+	set nobackup
+	set nowritebackup
+
+	" Give more space for displaying messages.
+	set cmdheight=2
+
+	" Don't pass messages to |ins-completion-menu|.
+	set shortmess+=c
+
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 	set updatetime=300
-
 
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -151,21 +164,15 @@
 
 "<SHORTCUTS
 
-        " Custom shortcuts
-        
         " Remap leader key to Space
         map <Space> <Leader>
         map <Space><Space> <Leader><Leader>
 
-        " FZF bindings
-        
         " Quick open file
         noremap <F1> :GFiles<CR>
 	" Search text everywhere
         noremap <F2> :Rg<CR>
 
-	" CoC bindings
-        
         " Go to definition
 	map <Leader>d <Plug>(coc-definition)
         " Go to references

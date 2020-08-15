@@ -35,6 +35,7 @@ colors:
     magenta: "0xc678dd"
     cyan: "0x56b6c2"
     white: "0x5c6370"
+
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as

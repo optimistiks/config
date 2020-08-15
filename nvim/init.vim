@@ -84,7 +84,6 @@
 
         " Set line numbers in NERDTree
         let NERDTreeShowLineNumbers=1
-        autocmd FileType nerdtree setlocal relativenumber
 
         " Auto-delete buffer when deleting file from NERDTree
         let NERDTreeAutoDeleteBuffer = 1

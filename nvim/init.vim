@@ -5,17 +5,11 @@
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	" Syntax highlight
-        " Css3
-        Plug 'hail2u/vim-css3-syntax'
-        " Javascript
         Plug 'yuezk/vim-js'
-        " Typescript
 	Plug 'HerringtonDarkholme/yats.vim'
-        " Styled components
         Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
-        " JSX and TSX
         Plug 'maxmellon/vim-jsx-pretty'
-
+        Plug 'hail2u/vim-css3-syntax'
 	" Color theme
         Plug 'joshdick/onedark.vim'
 	" File tree
@@ -48,15 +42,12 @@
 
         " Recommended https://github.com/HerringtonDarkholme/yats.vim
         set re=0
-
         " Syntax fold
         set foldmethod=syntax
         " Do not fold on open
         set foldlevelstart=99
-
         " Set line numbers to relative
 	set number relativenumber
-
         " Set indent size to 2 spaces
 	set expandtab
 	set shiftwidth=2
@@ -70,7 +61,6 @@
         " Css box-shadow and so on https://github.com/hail2u/vim-css3-syntax#highlighting-problems-on-vertical-align-box-shadow-and-others
         augroup VimCSS3Syntax
           autocmd!
-
           autocmd FileType css setlocal iskeyword+=-
         augroup END
 
@@ -120,37 +110,24 @@
 	let g:coc_global_extensions = [
 	      \'coc-html',
 	      \'coc-css',
-	      \'coc-json',
 	      \'coc-tsserver',
 	      \'coc-styled-components',
+	      \'coc-json',
 	      \'coc-eslint',
 	      \'coc-prettier',
 	      \'coc-actions',
-	      \'coc-highlight',
-	      \'coc-fzf-preview',
 	      \]
 
 	" The following bits taken from https://github.com/neoclide/coc.nvim#example-vim-configuration
-       
-	" TextEdit might fail if hidden is not set.
-	set hidden
-
-	" Some servers have issues with backup files, see #649.
-	set nobackup
-	set nowritebackup
 
 	" Give more space for displaying messages.
 	set cmdheight=2
-
 	" Don't pass messages to |ins-completion-menu|.
 	set shortmess+=c
-
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 	set updatetime=300
-
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
-
 	" Always show the signcolumn, otherwise it would shift the text each time
 	" diagnostics appear/become resolved.
 	if has("patch-8.1.1564")
@@ -171,7 +148,7 @@
         " Quick open file
         noremap <F1> :GFiles<CR>
 	" Search text everywhere
-        noremap <F2> :Rg<CR>
+        noremap <F2> :Rg<Space>
 
         " Go to definition
 	map <Leader>d <Plug>(coc-definition)
@@ -196,28 +173,21 @@
         map <Leader>f <Plug>(coc-fix-current)
 
         " Navigate diagnostics
-        map <Leader>[ <Plug>(coc-diagnostic-prev)
-        map <Leader>] <Plug>(coc-diagnostic-next)
+        map <Leader>[d <Plug>(coc-diagnostic-prev)
+        map <Leader>]d <Plug>(coc-diagnostic-next)
         
         " Toggle NerdTree
         noremap <Leader>n :NERDTree<CR>
 
-	" Remap for do codeAction of selected region
-	" https://github.com/iamcco/coc-actions
-        " <leader>a for the current selected range
-        " <leader>aw for the current word
-        " <leader>aas for the current sentence
-        " <leader>aap for the current paragraph
-	function! s:cocActionsOpenFromSelected(type) abort
-	  execute 'CocCommand actions.open ' . a:type
-	endfunction
-	xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-	nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+        " Actions menu for cursor position
+        noremap <Leader>a :CocCommand<Space>actions.open<CR>
 
         " Show actions
         map <Leader>ca <Plug>(coc-codeaction)
+
         " Rename
         map <Leader>cr <Plug>(coc-rename)
+
         " Open list of diagnostics
         noremap <Leader>ld :CocList diagnostics<CR>
 

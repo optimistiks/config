@@ -1,14 +1,11 @@
 window:
   dynamic_padding: true
-  decorations: none
-  startup_mode: Maximized
+  decorations: full
+  startup_mode: Windowed
 font:
   normal:
-    family: "JetBrains Mono"
-  size: 14
-  offset:
-    x: 0
-    y: 1
+    family: "JetBrainsMono NF"
+  size: 12
 # Color theme https://github.com/joshdick/onedark.vim/blob/master/term/One%20Dark.alacritty
 colors:
   primary:
@@ -35,7 +32,6 @@ colors:
     magenta: "0xc678dd"
     cyan: "0x56b6c2"
     white: "0x5c6370"
-
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Any items in the `env` entry below will be added as

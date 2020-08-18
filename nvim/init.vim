@@ -5,11 +5,11 @@
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	" Syntax highlight
+        Plug 'hail2u/vim-css3-syntax'
         Plug 'yuezk/vim-js'
 	Plug 'HerringtonDarkholme/yats.vim'
-        Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
         Plug 'maxmellon/vim-jsx-pretty'
-        Plug 'hail2u/vim-css3-syntax'
+        Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
 	" Color theme
         Plug 'joshdick/onedark.vim'
 	" File tree
@@ -106,10 +106,10 @@
 	" Extensions
 	let g:coc_global_extensions = [
 	      \'coc-tsserver',
-	      \'coc-styled-components',
 	      \'coc-eslint',
 	      \'coc-prettier',
 	      \'coc-json',
+	      \'coc-styled-components',
 	      \'coc-actions',
 	      \]
 

@@ -86,14 +86,12 @@
         let NERDTreeShowHidden = 1
 
         " Airline
-
 	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
         let g:airline_powerline_fonts = 1
 
         " Color scheme
-        
         syntax on
 	set termguicolors
 	set background=dark
@@ -130,12 +128,7 @@
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 	" Always show the signcolumn, otherwise it would shift the text each time
 	" diagnostics appear/become resolved.
-	if has("patch-8.1.1564")
-	  " Recently vim can merge signcolumn and number column into one
-	  set signcolumn=number
-	else
-	  set signcolumn=yes
-	endif
+	set signcolumn=yes
 
 "COC>
 
@@ -169,8 +162,8 @@
 	endfunction
 	noremap <Leader>h :call <SID>show_documentation()<CR>
 
-        " Fix current problem
-        map <Leader>f <Plug>(coc-fix-current)
+        " Quick fix current problem
+        map <Leader>qf <Plug>(coc-fix-current)
 
         " Navigate diagnostics
         map <Leader>[d <Plug>(coc-diagnostic-prev)

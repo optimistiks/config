@@ -33,6 +33,7 @@
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
         Plug 'yuttie/comfortable-motion.vim'
+        Plug 'ryanoasis/vim-devicons'
 
         call plug#end()
 
@@ -89,6 +90,7 @@
 	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
+        let g:airline_powerline_fonts = 1
 
         " Color scheme
         syntax on

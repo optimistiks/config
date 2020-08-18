@@ -23,7 +23,7 @@
 	Plug 'vim-airline/vim-airline-themes'
 	" Git
 	Plug 'tpope/vim-fugitive'
-	Plug 'airblade/vim-gitgutter'
+        Plug 'mhinz/vim-signify'
         Plug 'whiteinge/diffconflicts'
 	" Utility
         Plug 'tpope/vim-sensible'
@@ -120,7 +120,7 @@
 	" Don't pass messages to |ins-completion-menu|.
 	set shortmess+=c
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
-	set updatetime=300
+	set updatetime=100
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
 	" Always show the signcolumn, otherwise it would shift the text each time

@@ -106,13 +106,11 @@
 
 	" Extensions
 	let g:coc_global_extensions = [
-	      \'coc-html',
-	      \'coc-css',
 	      \'coc-tsserver',
 	      \'coc-styled-components',
-	      \'coc-json',
 	      \'coc-eslint',
 	      \'coc-prettier',
+	      \'coc-json',
 	      \'coc-actions',
 	      \]
 

@@ -5,11 +5,7 @@
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	" Syntax highlight
-        Plug 'hail2u/vim-css3-syntax'
-        Plug 'yuezk/vim-js'
-	Plug 'HerringtonDarkholme/yats.vim'
-        Plug 'maxmellon/vim-jsx-pretty'
-        Plug 'styled-components/vim-styled-components', { 'branch': 'main'  }
+        Plug 'sheerun/vim-polyglot'
 	" Color theme
         Plug 'joshdick/onedark.vim'
 	" File tree
@@ -41,14 +37,14 @@
 
 "<CONFIG
 
-        " Recommended https://github.com/HerringtonDarkholme/yats.vim
-        set re=0
         " Syntax fold
         set foldmethod=syntax
         " Do not fold on open
         set foldlevelstart=99
+
         " Set line numbers to relative
 	set number relativenumber
+
         " Set indent size to 2 spaces
 	set expandtab
 	set shiftwidth=2
@@ -58,12 +54,6 @@
 	" https://github.com/styled-components/vim-styled-components#breaking-syntax-highlighting-in-very-long-files
 	autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 	autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-        " Css box-shadow and so on https://github.com/hail2u/vim-css3-syntax#highlighting-problems-on-vertical-align-box-shadow-and-others
-        augroup VimCSS3Syntax
-          autocmd!
-          autocmd FileType css setlocal iskeyword+=-
-        augroup END
 
         " Nerdcomment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
@@ -107,10 +97,10 @@
 
 	" Extensions
 	let g:coc_global_extensions = [
+	      \'coc-json',
 	      \'coc-tsserver',
 	      \'coc-eslint',
 	      \'coc-prettier',
-	      \'coc-json',
 	      \'coc-styled-components',
 	      \'coc-actions',
 	      \]
@@ -119,12 +109,16 @@
 
 	" Give more space for displaying messages.
 	set cmdheight=2
+
 	" Don't pass messages to |ins-completion-menu|.
 	set shortmess+=c
+
 	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 	set updatetime=100
+
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
+
 	" Always show the signcolumn, otherwise it would shift the text each time
 	" diagnostics appear/become resolved.
 	set signcolumn=yes

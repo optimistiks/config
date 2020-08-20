@@ -1,11 +1,11 @@
 window:
   dynamic_padding: true
-  decorations: full
-  startup_mode: Windowed
+  decorations: none
+  startup_mode: Maximized
 font:
   normal:
-    family: "JetBrainsMono NF"
-  size: 12
+    family: "JetBrainsMono Nerd Font"
+  size: 14
 # Color theme https://github.com/joshdick/onedark.vim/blob/master/term/One%20Dark.alacritty
 colors:
   primary:

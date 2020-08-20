@@ -2,33 +2,46 @@
 
         call plug#begin(stdpath('data') . '/plugged')
 
+        " https://github.com/lambdalisue/fern.vim#note
+        Plug 'antoinemadec/FixCursorHold.nvim'
+
 	" Intellisense engine
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 	" Syntax highlight
         Plug 'sheerun/vim-polyglot'
+
 	" Color theme
         Plug 'joshdick/onedark.vim'
+
 	" File tree
-	Plug 'preservim/nerdtree'
-        Plug 'Xuyuanp/nerdtree-git-plugin'
+        Plug 'lambdalisue/fern.vim'
+        Plug 'lambdalisue/nerdfont.vim'
+        Plug 'lambdalisue/glyph-palette.vim'
+        Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+        Plug 'lambdalisue/fern-git-status.vim'
+        Plug 'lambdalisue/fern-mapping-project-top.vim'
+
 	" Fuzzy search
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+
 	" Statusline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
+
 	" Git
 	Plug 'tpope/vim-fugitive'
         Plug 'mhinz/vim-signify'
         Plug 'whiteinge/diffconflicts'
+
 	" Utility
-        Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
         Plug 'yegappan/mru' 
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
-        Plug 'yuttie/comfortable-motion.vim'
+        Plug 'mhinz/vim-startify'
         Plug 'ryanoasis/vim-devicons'
 
         call plug#end()
@@ -37,8 +50,27 @@
 
 "<CONFIG
 
+        " https://github.com/lambdalisue/glyph-palette.vim#usage
+        augroup my-glyph-palette
+          autocmd! *
+          autocmd FileType fern,startify call glyph_palette#apply()
+        augroup END
+
+        " https://github.com/lambdalisue/fern-renderer-nerdfont.vim#usage
+        let g:fern#renderer = "nerdfont"
+
+        " https://github.com/antoinemadec/FixCursorHold.nvim#configuration
+        let g:cursorhold_updatetime = 100
+
+        " When opening file from startify screen, set root to vcs root
+        let g:startify_change_to_vcs_root = 1
+        
+        " Hint from https://github.com/HerringtonDarkholme/yats.vim
+        set re=0 
+
         " Syntax fold
         set foldmethod=syntax
+
         " Do not fold on open
         set foldlevelstart=99
 
@@ -55,34 +87,21 @@
 	autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 	autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
-        " Nerdcomment - add spaces after comment delimiters by default
+        " NERDComment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
 
-        " Open automatically when vim is opened without arguments
-        " https://github.com/preservim/nerdtree#how-can-i-open-a-nerdtree-automatically-when-vim-starts-up-if-no-files-were-specified
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-        " Set line numbers in NERDTree
-        let NERDTreeShowLineNumbers=1
-
-        " Auto-delete buffer when deleting file from NERDTree
-        let NERDTreeAutoDeleteBuffer = 1
-
-        " Remove some visual NERDTree clutter
-        let NERDTreeMinimalUI = 1
-        let NERDTreeDirArrows = 1        
-
-        " Show hidden files by default
-        let NERDTreeShowHidden = 1
+        " Show hidden files in Fern by default
+        let g:fern#default_hidden = 1
 
         " Airline
+
 	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
         let g:airline_powerline_fonts = 1
 
         " Color scheme
+
         syntax on
 	set termguicolors
 	set background=dark
@@ -90,10 +109,14 @@
         let g:onedark_terminal_italics = 1
         colorscheme onedark
 
+        " https://github.com/ryanoasis/vim-devicons/wiki/Extra-Configuration
+        let g:WebDevIconsOS = 'Darwin'
+
 "CONFIG>
 
 
 "<COC
+        " https://github.com/neoclide/coc.nvim#example-vim-configuration
 
 	" Extensions
 	let g:coc_global_extensions = [
@@ -104,17 +127,6 @@
 	      \'coc-styled-components',
 	      \'coc-actions',
 	      \]
-
-	" The following bits taken from https://github.com/neoclide/coc.nvim#example-vim-configuration
-
-	" Give more space for displaying messages.
-	set cmdheight=2
-
-	" Don't pass messages to |ins-completion-menu|.
-	set shortmess+=c
-
-	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
-	set updatetime=100
 
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -133,6 +145,7 @@
 
         " Quick open file
         noremap <F1> :GFiles<CR>
+
 	" Search text everywhere
         noremap <F2> :Rg<Space>
 
@@ -153,6 +166,7 @@
 	    call CocAction('doHover')
 	  endif
 	endfunction
+        
 	noremap <Leader>h :call <SID>show_documentation()<CR>
 
         " Quick fix current problem
@@ -162,8 +176,8 @@
         map <Leader>[d <Plug>(coc-diagnostic-prev)
         map <Leader>]d <Plug>(coc-diagnostic-next)
         
-        " Toggle NerdTree
-        noremap <Leader>n :NERDTree<CR>
+        " Toggle file tree
+        map <Leader>t :Fern<Space>.<Space>-drawer<Space>-reveal=%<CR>
 
         " Actions menu for cursor position
         noremap <Leader>a :CocCommand<Space>actions.open<CR>

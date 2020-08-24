@@ -3,5 +3,6 @@
   "typescript.showUnused": false,
   "javascript.showUnused": false,
   "suggest.noselect": false,
-  "suggest.enablePreselect": true
+  "suggest.enablePreselect": true,
+  "explorer.icon.enableNerdfont": true
 }

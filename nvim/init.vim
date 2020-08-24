@@ -15,12 +15,7 @@
         Plug 'joshdick/onedark.vim'
 
 	" File tree
-        Plug 'lambdalisue/fern.vim'
-        Plug 'lambdalisue/nerdfont.vim'
         Plug 'lambdalisue/glyph-palette.vim'
-        Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-        Plug 'lambdalisue/fern-git-status.vim'
-        Plug 'lambdalisue/fern-mapping-project-top.vim'
 
 	" Fuzzy search
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -53,11 +48,8 @@
         " https://github.com/lambdalisue/glyph-palette.vim#usage
         augroup my-glyph-palette
           autocmd! *
-          autocmd FileType fern,startify call glyph_palette#apply()
+          autocmd FileType coc-explorer,startify call glyph_palette#apply()
         augroup END
-
-        " https://github.com/lambdalisue/fern-renderer-nerdfont.vim#usage
-        let g:fern#renderer = "nerdfont"
 
         " https://github.com/antoinemadec/FixCursorHold.nvim#configuration
         let g:cursorhold_updatetime = 100
@@ -90,9 +82,6 @@
         " NERDComment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1
 
-        " Show hidden files in Fern by default
-        let g:fern#default_hidden = 1
-
         " Airline
 
 	let g:airline_theme='onedark'
@@ -120,12 +109,19 @@
 
 	" Extensions
 	let g:coc_global_extensions = [
-	      \'coc-json',
+	      \'coc-marketplace',
+	      \'coc-explorer',
+	      \'coc-actions',
+	      \'coc-fzf-preview',
+	      \'coc-highlight',
+	      \'coc-bookmark',
+	      \'coc-html',
+	      \'coc-css',
 	      \'coc-tsserver',
+	      \'coc-json',
+	      \'coc-styled-components',
 	      \'coc-eslint',
 	      \'coc-prettier',
-	      \'coc-styled-components',
-	      \'coc-actions',
 	      \]
 
 	" Highlight the symbol and its references when holding the cursor.
@@ -166,7 +162,6 @@
 	    call CocAction('doHover')
 	  endif
 	endfunction
-        
 	noremap <Leader>h :call <SID>show_documentation()<CR>
 
         " Quick fix current problem
@@ -176,19 +171,17 @@
         map <Leader>[d <Plug>(coc-diagnostic-prev)
         map <Leader>]d <Plug>(coc-diagnostic-next)
         
-        " Toggle file tree
-        map <Leader>t :Fern<Space>.<Space>-drawer<Space>-reveal=%<CR>
-
-        " Actions menu for cursor position
-        noremap <Leader>a :CocCommand<Space>actions.open<CR>
 
         " Show actions
         map <Leader>ca <Plug>(coc-codeaction)
-
         " Rename
         map <Leader>cr <Plug>(coc-rename)
 
         " Open list of diagnostics
         noremap <Leader>ld :CocList diagnostics<CR>
+        " Toggle file explorer
+        noremap <Leader>e :CocCommand explorer<CR>
+        " Actions menu for cursor position
+        noremap <Leader>a :CocCommand actions.open<CR>
 
 "SHORTCUTS>

@@ -14,12 +14,11 @@
 	" Color theme
         Plug 'joshdick/onedark.vim'
 
-	" File tree
+	" Unified glyph colors
         Plug 'lambdalisue/glyph-palette.vim'
 
 	" Fuzzy search
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
 
 	" Statusline
 	Plug 'vim-airline/vim-airline'
@@ -31,12 +30,12 @@
         Plug 'whiteinge/diffconflicts'
 
 	" Utility
-	Plug 'tpope/vim-surround'
+        Plug 'tpope/vim-repeat'
+        Plug 'tpope/vim-surround'
         Plug 'tpope/vim-unimpaired'
-        Plug 'yegappan/mru' 
+        Plug 'mhinz/vim-startify'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
-        Plug 'mhinz/vim-startify'
         Plug 'ryanoasis/vim-devicons'
 
         call plug#end()
@@ -86,14 +85,12 @@
         let g:NERDSpaceDelims = 1
 
         " Airline
-
 	let g:airline_theme='onedark'
 	let g:airline#extensions#tabline#enabled = 1
 	let g:airline#extensions#tabline#formatter = 'unique_tail'
         let g:airline_powerline_fonts = 1
 
         " Color scheme
-
         syntax on
 	set termguicolors
 	set background=dark
@@ -116,8 +113,6 @@
 	      \'coc-explorer',
 	      \'coc-actions',
 	      \'coc-fzf-preview',
-	      \'coc-highlight',
-	      \'coc-bookmark',
 	      \'coc-html',
 	      \'coc-css',
 	      \'coc-tsserver',
@@ -134,6 +129,12 @@
 	" diagnostics appear/become resolved.
 	set signcolumn=yes
 
+        " Give more space for displaying messages.
+        set cmdheight=2
+
+        " Don't pass messages to |ins-completion-menu|.
+        set shortmess+=c
+
 "COC>
 
 "<SHORTCUTS
@@ -142,21 +143,33 @@
         map <Space> <Leader>
         map <Space><Space> <Leader><Leader>
 
-        " Quick open file
-        noremap <F1> :GFiles<CR>
+        " Look for stuff
 
+        " Quick open file
+        noremap <F1> :CocCommand fzf-preview.GitFiles<CR>
 	" Search text everywhere
-        noremap <F2> :Rg<Space>
+        noremap <F2> :CocCommand fzf-preview.ProjectGrep<Space>
+
+        " Go to stuff - fdsa
 
         " Go to definition
-	map <Leader>d <Plug>(coc-definition)
+	map <Leader>f <Plug>(coc-definition)
         " Go to references
-	map <Leader>r <Plug>(coc-references)
+	map <Leader>d <Plug>(coc-references)
 	" Go to implementation
-	map <Leader>i <Plug>(coc-implementation)
+	map <Leader>s <Plug>(coc-implementation)
 	" Go to type definition
-	map <Leader>t <Plug>(coc-type-definition)
+	map <Leader>a <Plug>(coc-type-definition)
 
+        " Open stuff - zx
+
+        " Toggle file explorer
+        noremap <Leader>z :CocCommand explorer --position floating<CR>
+        " Open list of diagnostics
+        noremap <Leader>x :CocList diagnostics<CR>
+
+        " Intelligent stuff - hjkl;
+        
         " Show hover help
 	function! s:show_documentation()
 	  if (index(['vim','help'], &filetype) >= 0)
@@ -166,25 +179,19 @@
 	  endif
 	endfunction
 	noremap <Leader>h :call <SID>show_documentation()<CR>
-
-        " Quick fix current problem
-        map <Leader>qf <Plug>(coc-fix-current)
-
-        " Navigate diagnostics
-        map <Leader>[d <Plug>(coc-diagnostic-prev)
-        map <Leader>]d <Plug>(coc-diagnostic-next)
-        
-
-        " Show actions
-        map <Leader>ca <Plug>(coc-codeaction)
-        " Rename
-        map <Leader>cr <Plug>(coc-rename)
-
-        " Open list of diagnostics
-        noremap <Leader>ld :CocList diagnostics<CR>
-        " Toggle file explorer
-        noremap <Leader>e :CocCommand explorer --position floating<CR>
         " Actions menu for cursor position
-        noremap <Leader>a :CocCommand actions.open<CR>
+        noremap <Leader>j :CocCommand actions.open<CR>
+        " Show actions
+        map <Leader>k <Plug>(coc-codeaction)
+        " Rename
+        map <Leader>l <Plug>(coc-rename)
+        " Quick fix current problem
+        map <Leader>; <Plug>(coc-fix-current)
+
+        " Navigate stuff
+        
+        " Navigate diagnostics
+        map <Leader>]d <Plug>(coc-diagnostic-next)
+        map <Leader>[d <Plug>(coc-diagnostic-prev)
 
 "SHORTCUTS>

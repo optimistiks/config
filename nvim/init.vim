@@ -45,6 +45,9 @@
 
 "<CONFIG
 
+        " Show line numbers in coc-explorer window
+        autocmd FileType coc-explorer setlocal relativenumber
+
         " https://github.com/lambdalisue/glyph-palette.vim#usage
         augroup my-glyph-palette
           autocmd! *
@@ -180,7 +183,7 @@
         " Open list of diagnostics
         noremap <Leader>ld :CocList diagnostics<CR>
         " Toggle file explorer
-        noremap <Leader>e :CocCommand explorer<CR>
+        noremap <Leader>e :CocCommand explorer --position floating<CR>
         " Actions menu for cursor position
         noremap <Leader>a :CocCommand actions.open<CR>
 

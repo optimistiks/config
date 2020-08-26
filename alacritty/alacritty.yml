@@ -5,7 +5,7 @@ window:
 font:
   normal:
     family: "Iosevka Nerd Font"
-  size: 14
+  size: 16
 # Color theme https://github.com/joshdick/onedark.vim/blob/master/term/One%20Dark.alacritty
 colors:
   primary:

@@ -188,10 +188,14 @@
         " Quick fix current problem
         map <Leader>; <Plug>(coc-fix-current)
 
-        " Navigate stuff
+        " Navigate stuff - ][, ';
         
         " Navigate diagnostics
-        map <Leader>]d <Plug>(coc-diagnostic-next)
-        map <Leader>[d <Plug>(coc-diagnostic-prev)
+        map <Leader>] <Plug>(coc-diagnostic-next)
+        map <Leader>[ <Plug>(coc-diagnostic-prev)
+
+        " Navigate buffers
+        noremap <Leader>' :bnext<CR>
+        noremap <Leader>; :bprev<CR>
 
 "SHORTCUTS>

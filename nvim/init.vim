@@ -58,7 +58,9 @@
 
         " When opening file from startify screen, set root to vcs root
         let g:startify_change_to_vcs_root = 1
-        
+       
+        set clipboard=unnamedplus
+
         " Hint from https://github.com/HerringtonDarkholme/yats.vim
         set re=0 
 
@@ -121,6 +123,8 @@
 	      \'coc-eslint',
 	      \'coc-prettier',
 	      \]
+
+  let g:fzf_preview_grep_cmd = 'rg --line-number --no-heading --color=never --fixed-strings'
 
 	" Highlight the symbol and its references when holding the cursor.
 	autocmd CursorHold * silent call CocActionAsync('highlight')

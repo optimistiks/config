@@ -80,8 +80,8 @@
 
 	" Consider all lines in file for syntax highlighting
 	" https://github.com/styled-components/vim-styled-components#breaking-syntax-highlighting-in-very-long-files
-	autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-	autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+	autocmd BufEnter *.{js,jsx,ts,tsx,scss} :syntax sync fromstart
+	autocmd BufLeave *.{js,jsx,ts,tsx,scss} :syntax sync clear
 
         " NERDComment - add spaces after comment delimiters by default
         let g:NERDSpaceDelims = 1

@@ -1,0 +1,9 @@
+# Ignore everything at the top level of ~/.config
+/*
+
+# ...except these
+!/.gitignore
+!/nvim/
+
+# Junk inside nvim/
+.DS_Store

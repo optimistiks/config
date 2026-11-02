@@ -3,6 +3,10 @@
 -- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
 
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.ignorecase = true
@@ -73,3 +77,13 @@ require("lazy").setup({
 })
 
 -- require("config.keymaps")
+
+-- :w always creates any missing folders
+vim.api.nvim_create_autocmd("BufWritePre", {
+  desc = "Create missing parent directories on save",
+  callback = function(ev)
+    if ev.match:match("^%w%w+:[\\/][\\/]") then return end -- skip URLs like oil://
+    local file = vim.uv.fs_realpath(ev.match) or ev.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
+})

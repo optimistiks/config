@@ -4,6 +4,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    dashboard = { enabled = true },
     bigfile = { enabled = true },   -- switches off heavy features for huge files
     quickfile = { enabled = true }, -- shows `nvim file.tsx` before plugins finish loading
     explorer = { enabled = true },  -- replaces netrw: `nvim .` opens the explorer

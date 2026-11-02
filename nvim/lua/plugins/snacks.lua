@@ -217,6 +217,11 @@ return {
           get = function() return vim.g.autoformat ~= false end,
           set = function(state) vim.g.autoformat = state end,
         }):map("<leader>uf")
+        Snacks.toggle({
+          name = "ESLint fix on save",
+          get = function() return vim.g.eslint_fix ~= false end,
+          set = function(state) vim.g.eslint_fix = state end,
+        }):map("<leader>ue")
       end,
     })
   end,

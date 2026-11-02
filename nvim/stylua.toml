@@ -1,0 +1,4 @@
+indent_type = "Spaces"   # stylua's default is tabs
+indent_width = 2         # 2 spaces per level, like your existing files
+column_width = 120       # wrap lines longer than 120 characters
+collapse_simple_statement = "Always"

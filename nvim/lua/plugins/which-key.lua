@@ -3,8 +3,9 @@ return {
   event = "VeryLazy",
   opts = {
     preset = "helix", -- compact popup in the bottom-right; try "modern" or "classic"
-    delay = 300,      -- ms before the popup appears
+    delay = 300, -- ms before the popup appears
     spec = {
+      { "<leader>c", group = "code" },
       { "<leader>f", group = "find" },
       { "<leader>s", group = "search" },
       { "<leader>g", group = "git" },
@@ -16,6 +17,10 @@ return {
     },
   },
   keys = {
-    { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Keymaps for this buffer" },
+    {
+      "<leader>?",
+      function() require("which-key").show({ global = false }) end,
+      desc = "Keymaps for this buffer",
+    },
   },
 }

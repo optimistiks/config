@@ -17,6 +17,9 @@ vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 -- vim.opt.updatetime = 200
 -- vim.opt.timeoutlen = 300
 
+-- Disable S so vim doesn't wait and mini can take over S
+vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+
 --[[
 -- https://github.com/vscode-neovim/vscode-neovim/issues/2117
 if vim.g.vscode then

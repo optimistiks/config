@@ -12,6 +12,7 @@ return {
       { "<leader>u", group = "ui toggles" },
       { "<leader>b", group = "buffer" },
       { "<leader>gh", group = "hunks" },
+      { "s", group = "surround" },
       { "gr", group = "lsp" },
       { "[", group = "prev" },
       { "]", group = "next" },

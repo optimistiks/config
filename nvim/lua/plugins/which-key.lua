@@ -11,6 +11,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>u", group = "ui toggles" },
       { "<leader>b", group = "buffer" },
+      { "<leader>gh", group = "hunks" },
       { "gr", group = "lsp" },
       { "[", group = "prev" },
       { "]", group = "next" },

@@ -222,6 +222,11 @@ return {
           get = function() return vim.g.eslint_fix ~= false end,
           set = function(state) vim.g.eslint_fix = state end,
         }):map("<leader>ue")
+        Snacks.toggle({
+          name = "Inline blame",
+          get = function() return require("gitsigns.config").config.current_line_blame end,
+          set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
+        }):map("<leader>ub")
       end,
     })
   end,

@@ -4,6 +4,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    dashboard = { enabled = true },
     bigfile = { enabled = true }, -- switches off heavy features for huge files
     quickfile = { enabled = true }, -- shows `nvim file.tsx` before plugins finish loading
     explorer = { enabled = true }, -- replaces netrw: `nvim .` opens the explorer
@@ -16,6 +17,15 @@ return {
       sources = {
         explorer = { hidden = true }, -- show dotfiles like .env, .eslintrc
         files = { hidden = true },
+        grep = { regex = false }, -- literal by default; <A-r> toggles regex
+      },
+      win = {
+        input = {
+          keys = {
+            ["<A-k>"] = { "history_back", mode = { "i", "n" } },
+            ["<A-j>"] = { "history_forward", mode = { "i", "n" } },
+          },
+        },
       },
     },
     lazygit = {},

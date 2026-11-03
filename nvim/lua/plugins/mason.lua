@@ -7,7 +7,7 @@ return {
     -- Non-LSP tools to keep installed (formatters, linters, debuggers)
     local registry = require("mason-registry")
     registry.refresh(function()
-      for _, tool in ipairs({ "prettier", "stylua" }) do
+      for _, tool in ipairs({ "prettier", "prettierd", "stylua" }) do
         local pkg = registry.get_package(tool)
         if not pkg:is_installed() then pkg:install() end
       end

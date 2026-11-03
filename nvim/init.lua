@@ -14,11 +14,39 @@ vim.opt.smartcase = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
+vim.opt.autoread = true -- reload files changed outside Neovim (if you have no unsaved edits)
 -- vim.opt.updatetime = 200
 -- vim.opt.timeoutlen = 300
 
 -- Disable S so vim doesn't wait and mini can take over S
 vim.keymap.set({ "n", "x" }, "s", "<Nop>")
+
+-- Copy file path (absolute, relative, file name)
+
+vim.keymap.set("n", "<leader>yr", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy relative path" })
+
+vim.keymap.set("n", "<leader>ya", function()
+  local path = vim.fn.expand("%:p")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy absolute path" })
+
+vim.keymap.set("n", "<leader>yf", function()
+  local name = vim.fn.expand("%:t")
+  vim.fn.setreg("+", name)
+  vim.notify("Copied: " .. name)
+end, { desc = "Copy file name" })
+
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  desc = "Check for files changed outside Neovim",
+  callback = function()
+    if vim.o.buftype ~= "nofile" then vim.cmd("checktime") end
+  end,
+})
 
 --[[
 -- https://github.com/vscode-neovim/vscode-neovim/issues/2117

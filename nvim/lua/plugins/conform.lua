@@ -1,4 +1,4 @@
-local prettier = { "prettier", "prettier_global" }
+local prettier = { "prettierd", "prettier_global" }
 
 return {
   "stevearc/conform.nvim",
@@ -28,7 +28,7 @@ return {
       lua = { "stylua" },
     },
     formatters = {
-      prettier = { require_cwd = true }, -- only in projects with a Prettier config
+      prettierd = { require_cwd = true }, -- same "only with a project config" rule
       prettier_global = { -- Prettier defaults, only outside JS projects
         inherit = "prettier",
         condition = function(_, ctx) return not vim.fs.root(ctx.dirname, "package.json") end, -- do not run in JS projects where Prettier isn't set up

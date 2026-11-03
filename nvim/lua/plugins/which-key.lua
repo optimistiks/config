@@ -11,6 +11,7 @@ return {
       { "<leader>g", group = "git" },
       { "<leader>u", group = "ui toggles" },
       { "<leader>b", group = "buffer" },
+      { "<leader>y", group = "yank / copy" },
       { "<leader>gh", group = "hunks" },
       { "s", group = "surround" },
       { "gr", group = "lsp" },

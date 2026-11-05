@@ -11,7 +11,7 @@ return {
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
-        "branch",
+        { "b:gitsigns_head", icon = "" },
         {
           "diff", -- +added ~changed -removed, taken from gitsigns
           source = function()

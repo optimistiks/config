@@ -15,6 +15,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 vim.opt.autoread = true -- reload files changed outside Neovim (if you have no unsaved edits)
+require("vim._core.ui2").enable({ msg = { target = "msg" } }) -- experimental 0.12 message UI: no "Press ENTER" interruptions
 -- vim.opt.updatetime = 200
 -- vim.opt.timeoutlen = 300
 

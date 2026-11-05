@@ -17,7 +17,10 @@ return {
       sources = {
         explorer = { hidden = true }, -- show dotfiles like .env, .eslintrc
         files = { hidden = true },
-        grep = { regex = false }, -- literal by default; <A-r> toggles regex
+        grep = {
+          regex = false, -- literal by default; <A-r> toggles regex
+          exclude = { "package-lock.json", "pnpm-lock.yaml", "*.lock", "*.min.js", "*.map" },
+        },
       },
       win = {
         input = {

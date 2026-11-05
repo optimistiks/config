@@ -13,6 +13,7 @@ return {
       "json",
       "regex",
       "bash",
+      "yaml",
     },
   },
 }

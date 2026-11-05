@@ -11,9 +11,13 @@ return {
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
-        { "b:gitsigns_head", icon = "" },
         {
-          "diff", -- +added ~changed -removed, taken from gitsigns
+          "b:gitsigns_head",
+          icon = "",
+          fmt = function(s) return #s > 20 and s:sub(1, 19) .. "…" or s end, -- truncate long branch names
+        },
+        {
+          "diff",
           source = function()
             local g = vim.b.gitsigns_status_dict
             if g then return { added = g.added, modified = g.changed, removed = g.removed } end
@@ -21,15 +25,19 @@ return {
         },
       },
       lualine_c = {
-        { "filename", path = 1 }, -- path relative to the project root
+        { "filename", path = 4 }, -- parent folder + file: ui/OpportunityTableRow.tsx
         "diagnostics",
       },
       lualine_x = {
-        { -- shows when lazy.nvim has plugin updates available
+        { -- "recording @q" while recording a macro
+          function() return "recording @" .. vim.fn.reg_recording() end,
+          cond = function() return vim.fn.reg_recording() ~= "" end,
+        },
+        {
           function() return require("lazy.status").updates() end,
           cond = function() return require("lazy.status").has_updates() end,
         },
-        "lsp_status", -- attached language servers, spinner while they're busy
+        "lsp_status",
         "filetype",
       },
       lualine_y = { "progress" },

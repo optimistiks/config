@@ -154,7 +154,27 @@ return {
     -- Git
     {
       "<leader>gg",
-      function() Snacks.lazygit() end,
+      function()
+        local file = vim.fn.tempname()
+        -- lazygit writes its final directory here when it quits
+        -- switch neovim to the final directory of lazygit
+        -- (for example, to follow git workspace change)
+        Snacks.lazygit({ env = { LAZYGIT_NEW_DIR_FILE = file } })
+        vim.api.nvim_create_autocmd("TermClose", {
+          once = true,
+          callback = function()
+            vim.schedule(function()
+              if vim.fn.filereadable(file) == 0 then return end
+              local dir = vim.fn.readfile(file)[1]
+              vim.fn.delete(file)
+              if dir and dir ~= "" and dir ~= vim.fn.getcwd() then
+                vim.cmd.cd(dir)
+                vim.notify("Switched to " .. dir)
+              end
+            end)
+          end,
+        })
+      end,
       desc = "Lazygit",
     },
     {

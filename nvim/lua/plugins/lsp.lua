@@ -27,6 +27,7 @@ return { -- a plugin file returns a list of plugin specs
             experimental = { completion = { enableServerSideFuzzyMatch = true } }, -- server filters huge completion lists before sending them
           },
           typescript = { -- same options as VS Code's "typescript.*" settings
+            tsserver = { maxTsServerMemory = 8192 }, -- MB; use the same value as your Cursor setting
             updateImportsOnFileMove = { enabled = "always" }, -- rename/move a file → imports update, no prompt
             inlayHints = { -- grey hints in code; toggle with <leader>uh
               parameterNames = { enabled = "literals" }, -- fn(/*name:*/ 5), only for literal arguments

@@ -15,6 +15,12 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 vim.opt.autoread = true -- reload files changed outside Neovim (if you have no unsaved edits)
+vim.opt.undofile = true -- keep undo history after closing a file (the big one)
+vim.opt.scrolloff = 8 -- keep 8 lines visible above/below the cursor
+vim.opt.splitright = true -- vertical splits open on the right
+vim.opt.splitbelow = true -- horizontal splits open below
+vim.opt.cursorline = true -- highlight the current line
+vim.opt.inccommand = "split" -- live preview of :s/old/new/ replacements, in a split
 require("vim._core.ui2").enable({ msg = { target = "msg" } }) -- experimental 0.12 message UI: no "Press ENTER" interruptions
 -- vim.opt.updatetime = 200
 -- vim.opt.timeoutlen = 300
@@ -104,7 +110,7 @@ require("lazy").setup({
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { "github_dark_high_contrast" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })

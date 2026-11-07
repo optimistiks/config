@@ -8,7 +8,7 @@ return {
     bigfile = { enabled = true }, -- switches off heavy features for huge files
     quickfile = { enabled = true }, -- shows `nvim file.tsx` before plugins finish loading
     explorer = { enabled = true }, -- replaces netrw: `nvim .` opens the explorer
-    indent = { enabled = true }, -- indent guides + current-scope highlight
+    indent = { enabled = false }, -- indent guides + current-scope highlight
     input = { enabled = true }, -- nicer vim.ui.input (used by LSP rename etc.)
     notifier = { enabled = true, timeout = 3000 },
     words = { enabled = true }, -- highlights LSP references of the word under cursor

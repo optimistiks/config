@@ -4,6 +4,8 @@
 # ...except these
 !/.gitignore
 !/nvim/
+!/ghostty/
+!/atuin/
 
 # Junk inside nvim/
 .DS_Store

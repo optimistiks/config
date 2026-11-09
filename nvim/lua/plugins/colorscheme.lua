@@ -1,10 +1,7 @@
 return {
-  "projekt0n/github-nvim-theme",
-  name = "github-theme",
+  "RazikSF/lumina-themes",
   lazy = false,
   priority = 1000,
-  config = function()
-    require("github-theme").setup({})
-    vim.cmd.colorscheme("github_dark_high_contrast")
-  end,
+  -- for ghostty: https://raw.githubusercontent.com/mbadolato/iTerm2-Color-Schemes/master/ghostty/Lumina%20Vitrail%20Dark
+  config = function() vim.cmd.colorscheme("lumina-vitrail-dark") end,
 }

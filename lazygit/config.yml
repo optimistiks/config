@@ -1,0 +1,18 @@
+# ~/.config/lazygit/config.yml
+
+git:
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never
+gui:
+  nerdFontsVersion: "3"
+  border: rounded
+  theme:
+    activeBorderColor: ["#7299ff", bold] # Lumina blue
+    inactiveBorderColor: ["#646876"] # Lumina muted gray
+    selectedLineBgColor: ["#1f2946"] # same as the Ghostty selection
+    optionsTextColor: ["#7299ff"]
+    cherryPickedCommitFgColor: ["#d19cdf"] # magenta
+    cherryPickedCommitBgColor: ["#1f2946"]
+    unstagedChangesColor: ["#ff763b"] # red
+    defaultFgColor: ["#f1eee6"] # main text

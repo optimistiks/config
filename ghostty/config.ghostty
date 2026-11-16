@@ -3,4 +3,4 @@ font-family = Liga SFMono Nerd Font
 font-thicken = true
 adjust-cell-width = -5%
 macos-option-as-alt = true
-theme = Lumina Vitrail Dark
+theme = light:Lumina Cherenkov Light,dark:Lumina Vitrail Dark

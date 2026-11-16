@@ -69,6 +69,7 @@ return { -- a plugin file returns a list of plugin specs
           "eslint", -- ESLint diagnostics + fix code actions (uses the project's eslint)
           "tailwindcss", -- class completion; only attaches if a Tailwind config exists
           "cssls", -- CSS / SCSS / Less
+          "cssmodules_ls", -- CSS modules
           "html", -- HTML
           "jsonls", -- JSON (+ the schemas above)
           "lua_ls", -- Lua, for editing this config

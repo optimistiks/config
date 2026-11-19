@@ -12,6 +12,8 @@ return {
       { "<leader>u", group = "ui toggles" },
       { "<leader>b", group = "buffer" },
       { "<leader>y", group = "yank / copy" },
+      { "<leader>x", group = "diagnostics / lists" },
+      { "<leader>q", group = "session" },
       { "<leader>gh", group = "hunks" },
       { "s", group = "surround" },
       { "gr", group = "lsp" },

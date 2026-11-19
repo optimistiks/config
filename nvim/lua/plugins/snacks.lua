@@ -259,6 +259,11 @@ return {
           get = function() return require("gitsigns.config").config.current_line_blame end,
           set = function(state) require("gitsigns").toggle_current_line_blame(state) end,
         }):map("<leader>ub")
+        Snacks.toggle({
+          name = "Sticky context",
+          get = function() return require("treesitter-context").enabled() end,
+          set = function(state) require("treesitter-context")[state and "enable" or "disable"]() end,
+        }):map("<leader>ut")
       end,
     })
   end,
